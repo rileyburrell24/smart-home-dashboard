@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0d10">
   <title>Smart Home</title>
-  <link rel="stylesheet" href="/styles.css?v=2.0.2">
+  <link rel="stylesheet" href="/styles.css?v=2.0.3">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to controls</a>
@@ -114,30 +114,43 @@
     <header class="overlay-header">
       <div>
         <p class="eyebrow">Dashboard Update</p>
-        <h2 id="updateOverlayTitle">Update available</h2>
-        <p id="updateVersionSummary" class="muted"></p>
+        <h2 id="updateOverlayTitle">Checking for updates…</h2>
+        <p id="updateVersionSummary" class="muted">Connecting to GitHub…</p>
       </div>
       <button id="closeUpdateButton" class="close-button" type="button">Close</button>
     </header>
 
     <main class="overlay-main update-overlay-main">
-      <section class="release-notes-card">
-        <h3>Release notes</h3>
-        <div id="releaseNotesContent" class="release-notes-content">Loading release notes…</div>
+      <section id="updateCheckingPanel" class="update-status-panel">
+        <div class="update-spinner" aria-hidden="true"></div>
+        <p>Checking for updates…</p>
       </section>
 
-      <section class="update-choice-panel">
-        <button id="updateNowButton" class="primary update-choice-button" type="button">Update Now</button>
-        <button id="updateLaterButton" class="secondary update-choice-button" type="button">Update Later</button>
-        <button id="scheduleUpdateButton" class="secondary update-choice-button" type="button">Schedule Update</button>
+      <section id="upToDatePanel" class="update-status-panel" hidden>
+        <h3>You’re up to date</h3>
+        <p id="upToDateText" class="muted"></p>
+        <button id="returnToDashboardButton" class="primary full-width-action" type="button">Return to Dashboard</button>
       </section>
 
-      <section id="scheduleUpdatePanel" class="schedule-update-panel" hidden>
-        <label for="scheduleUpdateAt"><strong>Install at</strong></label>
-        <input id="scheduleUpdateAt" type="datetime-local">
-        <button id="confirmScheduleUpdateButton" class="primary full-width-action" type="button">Save Schedule</button>
-        <button id="cancelScheduledUpdateButton" class="secondary full-width-action" type="button" hidden>Cancel Scheduled Update</button>
-        <p id="scheduledUpdateStatus" class="muted"></p>
+      <section id="updateAvailablePanel" hidden>
+        <section class="release-notes-card">
+          <h3 id="availableVersionTitle">Update available</h3>
+          <div id="releaseNotesContent" class="release-notes-content">Loading release notes…</div>
+        </section>
+
+        <section class="update-choice-panel">
+          <button id="updateNowButton" class="primary update-choice-button" type="button">Update Now</button>
+          <button id="updateLaterButton" class="secondary update-choice-button" type="button">Update Later</button>
+          <button id="scheduleUpdateButton" class="secondary update-choice-button" type="button">Schedule Update</button>
+        </section>
+
+        <section id="scheduleUpdatePanel" class="schedule-update-panel" hidden>
+          <label for="scheduleUpdateAt"><strong>Install at</strong></label>
+          <input id="scheduleUpdateAt" type="datetime-local">
+          <button id="confirmScheduleUpdateButton" class="primary full-width-action" type="button">Save Schedule</button>
+          <button id="cancelScheduledUpdateButton" class="secondary full-width-action" type="button" hidden>Cancel Scheduled Update</button>
+          <p id="scheduledUpdateStatus" class="muted"></p>
+        </section>
       </section>
     </main>
   </section>
@@ -153,17 +166,23 @@
     </header>
     <main class="overlay-main settings-main">
       <section class="settings-panel dashboard-update-panel">
-        <h3>Dashboard Updates</h3>
-        <p class="muted">Installed version: <strong id="settingsDashboardVersion">2.0.2</strong></p>
-        <p id="githubUpdateStatus" class="muted">Checking GitHub for updates…</p>
+        <h3>Updates</h3>
+        <p class="muted">Installed version: <strong id="settingsDashboardVersion">2.0.3</strong></p>
+        <p id="githubUpdateStatus" class="muted">Ready to check for updates.</p>
 
         <label class="settings-toggle-row">
           <span>
             <strong>Automatic Updates</strong>
-            <span class="muted setting-help">Automatically install newer dashboard versions from GitHub.</span>
+            <span class="muted setting-help">Automatically download and install newer dashboard versions from GitHub.</span>
           </span>
           <input id="automaticUpdatesToggle" type="checkbox" role="switch" aria-label="Automatic Updates">
         </label>
+
+        <div id="automaticUpdateTimeRow" class="automatic-update-time-row">
+          <label for="automaticUpdateTime"><strong>Install automatic updates at</strong></label>
+          <input id="automaticUpdateTime" type="time" value="03:00">
+          <p class="muted setting-help">If an update is available, it will be scheduled for this local time.</p>
+        </div>
 
         <button id="updateDashboardButton" class="primary full-width-action" type="button">Check for Updates</button>
         <p class="muted update-help">Your Home Assistant token, administrator PIN and dashboard settings are preserved during updates.</p>
@@ -231,6 +250,6 @@
     </form>
   </dialog>
 
-  <script src="/app.js?v=2.0.2" defer></script>
+  <script src="/app.js?v=2.0.3" defer></script>
 </body>
 </html>
