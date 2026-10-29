@@ -66,8 +66,12 @@ The Docker socket is mounted so the dashboard can rebuild its own container. Kee
 
 ## Current version
 
-2.0.0
+2.0.1
 
 ## License
 
 Personal project by Riley Burrell.
+
+## Update manager
+
+Version 2.0.1 adds optional automatic updates, GitHub-hosted release notes, Update Now / Update Later choices, and persistent scheduled updates.
