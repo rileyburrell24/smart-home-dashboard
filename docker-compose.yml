@@ -1,0 +1,17 @@
+services:
+  smart-home-dashboard:
+    build: .
+    container_name: smart-home-dashboard
+    restart: unless-stopped
+    ports:
+      - "8088:8088"
+    env_file:
+      - .env
+    environment:
+      - PORT=8088
+      - TZ=Europe/London
+      - DASHBOARD_HOST_DIR=${DASHBOARD_HOST_DIR:-/DATA/AppData/smarthome-dashboard}
+    volumes:
+      - ${DASHBOARD_HOST_DIR:-/DATA/AppData/smarthome-dashboard}/data:/app/data
+      - ${DASHBOARD_HOST_DIR:-/DATA/AppData/smarthome-dashboard}:/host-dashboard
+      - /var/run/docker.sock:/var/run/docker.sock
