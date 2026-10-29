@@ -66,7 +66,7 @@ The Docker socket is mounted so the dashboard can rebuild its own container. Kee
 
 ## Current version
 
-2.1.1
+2.1.2
 
 ## License
 
@@ -95,3 +95,8 @@ Redesigned Settings with categories, responsive typography/icons and persistent 
 ### 2.1.1
 
 Fixes GitHub 403 update checks and adds a main-dashboard Update Available indicator.
+
+
+### 2.1.2
+
+Adds left-side dashboard navigation, a compact Home overview and installed-version release notes.
