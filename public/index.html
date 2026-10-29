@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d10">
+  <title>Smart Home</title>
+  <link rel="stylesheet" href="/styles.css?v=2.0.0">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to controls</a>
+
+  <div id="offlineBanner" class="offline-banner" role="status" aria-live="polite" hidden>
+    Connection lost — reconnecting…
+  </div>
+
+  <header class="topbar">
+    <div class="brand-block">
+      <h1>Smart Home</h1>
+      <p id="headerDate" class="muted"></p>
+    </div>
+    <div class="header-actions" aria-label="Whole-house actions">
+      <button id="allOnButton" class="primary header-action-button" type="button">All On</button>
+      <button id="allOffButton" class="danger header-action-button" type="button">All Off</button>
+      <button id="settingsButton" class="secondary header-action-button" type="button">Settings</button>
+    </div>
+    <div class="header-status">
+      <div id="headerClock" class="header-clock"></div>
+      <div id="weather" class="weather" aria-live="polite">
+        <span id="weatherIcon" class="weather-icon" aria-hidden="true">•</span>
+        <span id="weatherText">Loading weather…</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section aria-labelledby="rooms-heading">
+      <div class="section-heading">
+        <h2 id="rooms-heading">Rooms</h2>
+        <p class="muted room-filter-note">Useful controls only: lights, plugs, speakers, TVs and hubs.</p>
+      </div>
+      <div id="roomGrid" class="grid room-grid" aria-live="polite"></div>
+    </section>
+
+    <section aria-labelledby="heating-heading">
+      <div class="section-heading heating-section-heading">
+        <div>
+          <h2 id="heating-heading">Heating</h2>
+          <p class="muted">Hive thermostat control and protected Boost.</p>
+        </div>
+      </div>
+      <div id="heatingGrid" class="grid heating-grid" aria-live="polite"></div>
+    </section>
+
+    <section aria-labelledby="cameras-heading">
+      <div class="section-heading camera-section-heading">
+        <div>
+          <h2 id="cameras-heading">Cameras</h2>
+          <p class="muted">Live cameras and doorbell feeds.</p>
+        </div>
+        <button id="openCamerasButton" class="primary" type="button">Open Cameras</button>
+      </div>
+      <div id="cameraPreviewGrid" class="grid camera-preview-grid"></div>
+    </section>
+  </main>
+
+  <section id="roomOverlay" class="full-overlay" hidden aria-labelledby="roomOverlayTitle">
+    <header class="overlay-header">
+      <div>
+        <p class="eyebrow">Room</p>
+        <h2 id="roomOverlayTitle">Room</h2>
+        <p id="roomOverlaySummary" class="muted"></p>
+      </div>
+      <button id="closeRoomButton" class="close-button" type="button">Close</button>
+    </header>
+    <main class="overlay-main">
+      <div id="roomEntityGrid" class="grid device-grid"></div>
+    </main>
+  </section>
+
+  <section id="cameraOverlay" class="full-overlay camera-overlay" hidden aria-labelledby="cameraOverlayTitle">
+    <header class="overlay-header">
+      <div>
+        <p id="cameraAlertLabel" class="eyebrow">Camera</p>
+        <h2 id="cameraOverlayTitle">Cameras</h2>
+      </div>
+      <button id="closeCameraButton" class="close-button" type="button">Close</button>
+    </header>
+    <main class="camera-overlay-main">
+      <div id="cameraSelectorGrid" class="camera-selector-grid"></div>
+      <section id="liveCameraPanel" class="live-camera-panel" hidden aria-live="polite">
+        <div class="live-camera-heading">
+          <div>
+            <p class="eyebrow">Live view</p>
+            <h3 id="liveCameraName">Camera</h3>
+          </div>
+          <span id="doorbellCountdown" class="doorbell-countdown" hidden></span>
+        </div>
+        <div class="live-camera-frame">
+          <img id="liveCameraImage" alt="Live camera view">
+        </div>
+        <div id="cameraControlBar" class="camera-control-bar">
+          <button id="listenButton" type="button" class="secondary" hidden>Listen</button>
+          <button id="talkButton" type="button" class="secondary" hidden>Talk</button>
+          <button id="sirenButton" type="button" class="siren-button" hidden>Siren</button>
+        </div>
+        <p id="cameraAudioNote" class="camera-audio-note muted"></p>
+        <p id="cameraStatus" class="muted">Starting live view…</p>
+      </section>
+    </main>
+  </section>
+
+  <section id="settingsOverlay" class="full-overlay" hidden aria-labelledby="settingsTitle">
+    <header class="overlay-header">
+      <div>
+        <p class="eyebrow">Administrator</p>
+        <h2 id="settingsTitle">Settings</h2>
+        <p class="muted">Automatically locks after 1 minute of inactivity.</p>
+      </div>
+      <button id="closeSettingsButton" class="close-button" type="button">Close</button>
+    </header>
+    <main class="overlay-main settings-main">
+      <section class="settings-panel dashboard-update-panel">
+        <h3>Dashboard</h3>
+        <p class="muted">Installed version: <strong id="settingsDashboardVersion">2.0.0</strong></p>
+        <p id="githubUpdateStatus" class="muted">Checking GitHub for updates…</p>
+        <button id="updateDashboardButton" class="primary full-width-action" type="button">Check for Updates</button>
+        <p class="muted update-help">Updates are downloaded from the configured GitHub repository. Your Home Assistant token, administrator PIN and dashboard settings are preserved.</p>
+      </section>
+
+      <section id="adminLockedPanel" class="settings-panel">
+        <h3 id="adminAuthTitle">Administrator PIN</h3>
+        <p id="adminAuthHelp" class="muted">Enter your administrator PIN.</p>
+        <div class="pin-row">
+          <input id="adminPinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="12" autocomplete="off" aria-label="Administrator PIN">
+          <button id="adminUnlockButton" class="primary" type="button">Unlock</button>
+        </div>
+        <p id="adminAuthStatus" class="muted" role="status"></p>
+      </section>
+
+      <section id="adminUnlockedPanel" class="settings-panel" hidden>
+        <div class="settings-panel-heading">
+          <div>
+            <h3>Dashboard layout</h3>
+            <p class="muted">Choose which rooms appear and change their order.</p>
+          </div>
+          <button id="saveLayoutButton" class="primary" type="button">Save Layout</button>
+        </div>
+        <div id="roomLayoutEditor" class="layout-editor"></div>
+      </section>
+    </main>
+  </section>
+
+  <div id="standby" class="standby" hidden aria-label="Standby screen">
+    <div id="standbyContent" class="standby-content">
+      <div id="standbyClock" class="standby-clock"></div>
+      <div id="standbyDate" class="standby-date"></div>
+      <div id="standbyWeather" class="standby-weather">Loading weather…</div>
+      <div class="wake-hint">Touch anywhere to open Smart Home</div>
+    </div>
+  </div>
+
+  <div id="doorbellBanner" class="doorbell-banner" role="alert" hidden>
+    Doorbell rang — opening live view
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <dialog id="confirmDialog">
+    <form method="dialog">
+      <h2>Confirm action</h2>
+      <p id="confirmText"></p>
+      <div class="dialog-actions">
+        <button value="cancel">Cancel</button>
+        <button class="primary" value="confirm">Confirm</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="protectedPinDialog">
+    <form method="dialog">
+      <h2>PIN required</h2>
+      <p id="protectedPinText">Enter your administrator PIN to use this protected action.</p>
+      <input id="protectedPinInput" class="protected-pin-input" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="12" autocomplete="off" aria-label="Administrator PIN">
+      <p id="protectedPinStatus" class="muted" role="status"></p>
+      <div class="dialog-actions">
+        <button value="cancel">Cancel</button>
+        <button id="protectedPinConfirm" class="primary" value="confirm">Continue</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/app.js?v=2.0.0" defer></script>
+</body>
+</html>
