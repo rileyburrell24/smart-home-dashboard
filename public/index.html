@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0d10">
   <title>Smart Home</title>
-  <link rel="stylesheet" href="/styles.css?v=2.0.3">
+  <link rel="stylesheet" href="/styles.css?v=2.1.0">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to controls</a>
@@ -155,60 +155,128 @@
     </main>
   </section>
 
-  <section id="settingsOverlay" class="full-overlay" hidden aria-labelledby="settingsTitle">
-    <header class="overlay-header">
-      <div>
-        <p class="eyebrow">Administrator</p>
-        <h2 id="settingsTitle">Settings</h2>
-        <p class="muted">Automatically locks after 1 minute of inactivity.</p>
-      </div>
-      <button id="closeSettingsButton" class="close-button" type="button">Close</button>
+  <section id="settingsOverlay" class="full-overlay settings-overlay" hidden aria-labelledby="settingsTitle">
+    <header class="settings-topbar">
+      <h2 id="settingsTitle">Settings</h2>
+      <button id="closeSettingsButton" class="close-button settings-close-button" type="button">Close</button>
     </header>
-    <main class="overlay-main settings-main">
-      <section class="settings-panel dashboard-update-panel">
-        <h3>Updates</h3>
-        <p class="muted">Installed version: <strong id="settingsDashboardVersion">2.0.3</strong></p>
-        <p id="githubUpdateStatus" class="muted">Ready to check for updates.</p>
 
-        <label class="settings-toggle-row">
-          <span>
-            <strong>Automatic Updates</strong>
-            <span class="muted setting-help">Automatically download and install newer dashboard versions from GitHub.</span>
-          </span>
-          <input id="automaticUpdatesToggle" type="checkbox" role="switch" aria-label="Automatic Updates">
-        </label>
+    <div class="settings-shell">
+      <nav class="settings-sidebar" aria-label="Settings categories">
+        <button class="settings-nav-item is-active" data-settings-page="system" type="button">
+          <span class="settings-nav-icon" aria-hidden="true">⚙</span>
+          <span>System</span>
+        </button>
+        <button class="settings-nav-item" data-settings-page="layout" type="button">
+          <span class="settings-nav-icon" aria-hidden="true">▦</span>
+          <span>Dashboard Layout</span>
+        </button>
+        <button class="settings-nav-item" data-settings-page="updates" type="button">
+          <span class="settings-nav-icon" aria-hidden="true">↻</span>
+          <span>Updates</span>
+        </button>
+        <button class="settings-nav-item" data-settings-page="themes" type="button">
+          <span class="settings-nav-icon" aria-hidden="true">◐</span>
+          <span>Themes</span>
+        </button>
+      </nav>
 
-        <div id="automaticUpdateTimeRow" class="automatic-update-time-row">
-          <label for="automaticUpdateTime"><strong>Install automatic updates at</strong></label>
-          <input id="automaticUpdateTime" type="time" value="03:00">
-          <p class="muted setting-help">If an update is available, it will be scheduled for this local time.</p>
-        </div>
+      <main class="settings-content">
+        <section class="settings-page is-active" data-settings-page-panel="system">
+          <div class="settings-page-heading">
+            <h3>System Settings</h3>
+            <p class="muted">Dashboard information and administrator access.</p>
+          </div>
 
-        <button id="updateDashboardButton" class="primary full-width-action" type="button">Check for Updates</button>
-        <p class="muted update-help">Your Home Assistant token, administrator PIN and dashboard settings are preserved during updates.</p>
-      </section>
+          <section class="settings-card">
+            <h4>Dashboard</h4>
+            <p>Installed version: <strong id="settingsDashboardVersion">2.1.0</strong></p>
+            <p class="muted">Smart Home Dashboard running on your Raspberry Pi.</p>
+          </section>
 
-      <section id="adminLockedPanel" class="settings-panel">
-        <h3 id="adminAuthTitle">Administrator PIN</h3>
-        <p id="adminAuthHelp" class="muted">Enter your administrator PIN.</p>
-        <div class="pin-row">
-          <input id="adminPinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="12" autocomplete="off" aria-label="Administrator PIN">
-          <button id="adminUnlockButton" class="primary" type="button">Unlock</button>
-        </div>
-        <p id="adminAuthStatus" class="muted" role="status"></p>
-      </section>
+          <section id="adminLockedPanel" class="settings-card">
+            <h4 id="adminAuthTitle">Administrator PIN</h4>
+            <p id="adminAuthHelp" class="muted">Enter your administrator PIN.</p>
+            <div class="pin-row">
+              <input id="adminPinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="12" autocomplete="off" aria-label="Administrator PIN">
+              <button id="adminUnlockButton" class="primary" type="button">Unlock</button>
+            </div>
+            <p id="adminAuthStatus" class="muted" role="status"></p>
+          </section>
 
-      <section id="adminUnlockedPanel" class="settings-panel" hidden>
-        <div class="settings-panel-heading">
-          <div>
-            <h3>Dashboard layout</h3>
+          <section id="adminUnlockedPanel" class="settings-card" hidden>
+            <h4>Administrator session</h4>
+            <p class="muted">Unlocked. This session automatically locks after 1 minute of inactivity.</p>
+          </section>
+        </section>
+
+        <section class="settings-page" data-settings-page-panel="layout" hidden>
+          <div class="settings-page-heading">
+            <h3>Dashboard Layout</h3>
             <p class="muted">Choose which rooms appear and change their order.</p>
           </div>
-          <button id="saveLayoutButton" class="primary" type="button">Save Layout</button>
-        </div>
-        <div id="roomLayoutEditor" class="layout-editor"></div>
-      </section>
-    </main>
+          <section class="settings-card">
+            <div id="roomLayoutEditor" class="layout-editor"></div>
+            <button id="saveLayoutButton" class="primary full-width-action" type="button">Save Layout</button>
+          </section>
+        </section>
+
+        <section class="settings-page" data-settings-page-panel="updates" hidden>
+          <div class="settings-page-heading">
+            <h3>Updates</h3>
+            <p class="muted">Check for new dashboard versions and control automatic updates.</p>
+          </div>
+          <section class="settings-card dashboard-update-panel">
+            <p>Installed version: <strong id="settingsDashboardVersionUpdates">2.1.0</strong></p>
+            <p id="githubUpdateStatus" class="muted">Ready to check for updates.</p>
+
+            <label class="settings-toggle-row">
+              <span>
+                <strong>Automatic Updates</strong>
+                <span class="muted setting-help">Automatically install newer dashboard versions from GitHub.</span>
+              </span>
+              <input id="automaticUpdatesToggle" type="checkbox" role="switch" aria-label="Automatic Updates">
+            </label>
+
+            <div id="automaticUpdateTimeRow" class="automatic-update-time-row">
+              <label for="automaticUpdateTime"><strong>Install automatic updates at</strong></label>
+              <input id="automaticUpdateTime" type="time" value="03:00">
+              <p class="muted setting-help">If an update is available, it will be scheduled for this local time.</p>
+            </div>
+
+            <button id="updateDashboardButton" class="primary full-width-action" type="button">Check for Updates</button>
+          </section>
+        </section>
+
+        <section class="settings-page" data-settings-page-panel="themes" hidden>
+          <div class="settings-page-heading">
+            <h3>Themes</h3>
+            <p class="muted">Choose how the dashboard looks on wall panels.</p>
+          </div>
+
+          <section class="settings-card">
+            <div class="theme-grid" role="radiogroup" aria-label="Dashboard theme">
+              <button class="theme-option" data-theme="midnight" type="button">
+                <span class="theme-preview theme-preview-midnight"></span>
+                <span><strong>Midnight</strong><small>Default dark theme</small></span>
+              </button>
+              <button class="theme-option" data-theme="graphite" type="button">
+                <span class="theme-preview theme-preview-graphite"></span>
+                <span><strong>Graphite</strong><small>Softer neutral dark theme</small></span>
+              </button>
+              <button class="theme-option" data-theme="high-contrast" type="button">
+                <span class="theme-preview theme-preview-contrast"></span>
+                <span><strong>High Contrast</strong><small>Sharper borders and brighter text</small></span>
+              </button>
+              <button class="theme-option" data-theme="warm" type="button">
+                <span class="theme-preview theme-preview-warm"></span>
+                <span><strong>Warm</strong><small>Dark theme with warmer surfaces</small></span>
+              </button>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
   </section>
 
   <div id="standby" class="standby" hidden aria-label="Standby screen">
@@ -250,6 +318,6 @@
     </form>
   </dialog>
 
-  <script src="/app.js?v=2.0.3" defer></script>
+  <script src="/app.js?v=2.1.0" defer></script>
 </body>
 </html>
