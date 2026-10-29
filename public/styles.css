@@ -932,3 +932,39 @@ button, input, select { font-size: var(--text-md); }
   .settings-content { padding: 12px; }
   .settings-topbar { height: 58px; }
 }
+
+
+/* v2.1.1 main-dashboard update indicator */
+.update-available-button {
+  width: auto;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid #d2a12e;
+  border-radius: 13px;
+  background: #3a2b08;
+  color: #ffe28a;
+  padding: 10px 14px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.update-available-button:hover,
+.update-available-button:focus-visible {
+  border-color: #ffe28a;
+  background: #4a370a;
+}
+
+.update-available-button > span:first-child {
+  font-size: var(--icon-size, 20px);
+  line-height: 1;
+}
+
+@media (max-width: 700px) {
+  .update-available-button {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}
