@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0d10">
   <title>Smart Home</title>
-  <link rel="stylesheet" href="/styles.css?v=2.1.0">
+  <link rel="stylesheet" href="/styles.css?v=2.1.1">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to controls</a>
@@ -20,6 +20,10 @@
       <p id="headerDate" class="muted"></p>
     </div>
     <div class="header-actions" aria-label="Whole-house actions">
+      <button id="updateAvailableButton" class="update-available-button" type="button" hidden>
+        <span aria-hidden="true">↻</span>
+        <span id="updateAvailableText">Update available</span>
+      </button>
       <button id="allOnButton" class="primary header-action-button" type="button">All On</button>
       <button id="allOffButton" class="danger header-action-button" type="button">All Off</button>
       <button id="settingsButton" class="secondary header-action-button" type="button">Settings</button>
@@ -190,7 +194,7 @@
 
           <section class="settings-card">
             <h4>Dashboard</h4>
-            <p>Installed version: <strong id="settingsDashboardVersion">2.1.0</strong></p>
+            <p>Installed version: <strong id="settingsDashboardVersion">2.1.1</strong></p>
             <p class="muted">Smart Home Dashboard running on your Raspberry Pi.</p>
           </section>
 
@@ -227,7 +231,7 @@
             <p class="muted">Check for new dashboard versions and control automatic updates.</p>
           </div>
           <section class="settings-card dashboard-update-panel">
-            <p>Installed version: <strong id="settingsDashboardVersionUpdates">2.1.0</strong></p>
+            <p>Installed version: <strong id="settingsDashboardVersionUpdates">2.1.1</strong></p>
             <p id="githubUpdateStatus" class="muted">Ready to check for updates.</p>
 
             <label class="settings-toggle-row">
@@ -318,6 +322,6 @@
     </form>
   </dialog>
 
-  <script src="/app.js?v=2.1.0" defer></script>
+  <script src="/app.js?v=2.1.1" defer></script>
 </body>
 </html>
