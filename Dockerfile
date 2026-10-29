@@ -9,6 +9,7 @@ RUN npm install --omit=dev
 
 COPY server.js ./
 COPY server.payload.b64 ./
+COPY server.patch.b64 ./
 COPY public ./public
 
 ENV NODE_ENV=production
