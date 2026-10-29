@@ -799,3 +799,136 @@ dialog::backdrop { background: rgba(0,0,0,.75); }
 @keyframes update-spin {
   to { transform: rotate(360deg); }
 }
+
+
+/* v2.1 responsive UI scale */
+:root {
+  --text-xs: clamp(12px, 0.8vw, 15px);
+  --text-sm: clamp(14px, 1vw, 17px);
+  --text-md: clamp(16px, 1.25vw, 20px);
+  --text-lg: clamp(20px, 1.8vw, 28px);
+  --text-xl: clamp(28px, 3vw, 44px);
+  --icon-size: clamp(20px, 2vw, 30px);
+}
+body { font-size: var(--text-md); }
+button, input, select { font-size: var(--text-md); }
+.card-title { font-size: clamp(17px, 1.7vw, 24px); }
+.card-subtitle, .muted { font-size: var(--text-sm); }
+
+.settings-overlay { overflow: hidden; }
+.settings-topbar {
+  height: clamp(58px, 7vh, 72px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px clamp(14px, 2vw, 24px);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.settings-topbar h2 { margin: 0; font-size: var(--text-lg); }
+.settings-close-button { min-width: 92px; width: auto; }
+
+.settings-shell {
+  display: grid;
+  grid-template-columns: minmax(180px, 250px) minmax(0, 1fr);
+  height: calc(100dvh - clamp(58px, 7vh, 72px));
+  overflow: hidden;
+}
+.settings-sidebar {
+  border-right: 1px solid var(--border);
+  background: #0f1216;
+  padding: 12px;
+  overflow-y: auto;
+}
+.settings-nav-item {
+  width: 100%;
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: #f5f7fa;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+}
+.settings-nav-item.is-active { background: var(--surface-2); border-color: var(--border); }
+.settings-nav-icon { font-size: var(--icon-size); text-align: center; }
+
+.settings-content { overflow-y: auto; padding: clamp(14px, 2vw, 28px); }
+.settings-page { max-width: 980px; margin: 0 auto; }
+.settings-page-heading { margin-bottom: 16px; }
+.settings-page-heading h3 { font-size: var(--text-xl); margin: 0 0 6px; }
+
+.settings-card {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 16px;
+  padding: clamp(14px, 1.8vw, 22px);
+  margin-bottom: 14px;
+}
+.settings-card h4 { margin: 0 0 8px; font-size: var(--text-lg); }
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+.theme-option {
+  width: 100%;
+  min-height: 120px;
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #101419;
+  color: #f5f7fa;
+  padding: 12px;
+}
+.theme-option.is-selected { border-color: #f5f7fa; box-shadow: inset 0 0 0 1px #f5f7fa; }
+.theme-option small { display: block; margin-top: 4px; color: var(--muted); font-size: var(--text-xs); }
+
+.theme-preview { width: 54px; height: 54px; border-radius: 12px; border: 1px solid #555; }
+.theme-preview-midnight { background: linear-gradient(135deg, #0b0d10 50%, #20262e 50%); }
+.theme-preview-graphite { background: linear-gradient(135deg, #17191d 50%, #2b2f35 50%); }
+.theme-preview-contrast { background: linear-gradient(135deg, #000 50%, #fff 50%); }
+.theme-preview-warm { background: linear-gradient(135deg, #120f0d 50%, #30241d 50%); }
+
+:root[data-theme="midnight"] {
+  --surface: #15191f; --surface-2: #20262e; --border: #303640; --muted: #aeb6c2;
+}
+:root[data-theme="graphite"] {
+  --surface: #1b1d21; --surface-2: #292c31; --border: #3a3e45; --muted: #b8bdc5;
+}
+:root[data-theme="high-contrast"] {
+  --surface: #000; --surface-2: #111; --border: #fff; --muted: #fff;
+}
+:root[data-theme="high-contrast"] body,
+:root[data-theme="high-contrast"] .full-overlay { background: #000; color: #fff; }
+:root[data-theme="warm"] {
+  --surface: #18130f; --surface-2: #2a211b; --border: #4a382c; --muted: #c8b7a8;
+}
+
+@media (max-width: 820px) {
+  .settings-shell { grid-template-columns: 150px minmax(0, 1fr); }
+  .settings-nav-item { grid-template-columns: 30px 1fr; padding: 9px; }
+}
+@media (max-width: 620px) {
+  .settings-shell { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .settings-sidebar {
+    display: flex; gap: 8px; overflow-x: auto;
+    border-right: 0; border-bottom: 1px solid var(--border); padding: 8px;
+  }
+  .settings-nav-item {
+    min-width: max-content; width: auto;
+    grid-template-columns: auto auto; margin: 0;
+  }
+  .settings-content { padding: 12px; }
+  .settings-topbar { height: 58px; }
+}
