@@ -66,7 +66,7 @@ The Docker socket is mounted so the dashboard can rebuild its own container. Kee
 
 ## Current version
 
-2.1.0
+2.1.1
 
 ## License
 
@@ -90,3 +90,8 @@ Check for Updates now opens a full-screen status view immediately. Automatic Upd
 ### 2.1.0
 
 Redesigned Settings with categories, responsive typography/icons and persistent dashboard themes.
+
+
+### 2.1.1
+
+Fixes GitHub 403 update checks and adds a main-dashboard Update Available indicator.
