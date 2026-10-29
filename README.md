@@ -66,7 +66,7 @@ The Docker socket is mounted so the dashboard can rebuild its own container. Kee
 
 ## Current version
 
-2.0.1
+2.0.2
 
 ## License
 
@@ -75,3 +75,8 @@ Personal project by Riley Burrell.
 ## Update manager
 
 Version 2.0.1 adds optional automatic updates, GitHub-hosted release notes, Update Now / Update Later choices, and persistent scheduled updates.
+
+
+### 2.0.2 updater bootstrap fix
+
+Fixed self-update path handling inside Docker. Application files are now written through the `/host-dashboard` bind mount while Docker Compose still receives the real host path.
