@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0d10">
   <title>Smart Home</title>
-  <link rel="stylesheet" href="/styles.css?v=2.1.2">
+  <link rel="stylesheet" href="/styles.css?v=2.1.3">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to controls</a>
@@ -170,7 +170,7 @@
 
         <section class="update-choice-panel">
           <button id="installedNotesReturnButton" class="secondary update-choice-button" type="button" hidden>Return to Settings</button>
-          <button id="updateNowButton" class="primary update-choice-button" type="button">Update Now</button>
+          <button id="updateNowButton" class="primary update-choice-button" type="button">Download and Install Update</button>
           <button id="updateLaterButton" class="secondary update-choice-button" type="button">Update Later</button>
           <button id="scheduleUpdateButton" class="secondary update-choice-button" type="button">Schedule Update</button>
         </section>
@@ -182,6 +182,17 @@
           <button id="cancelScheduledUpdateButton" class="secondary full-width-action" type="button" hidden>Cancel Scheduled Update</button>
           <p id="scheduledUpdateStatus" class="muted"></p>
         </section>
+      </section>
+      <section id="updateProgressPanel" class="update-progress-panel" hidden aria-live="polite">
+        <h3 id="updateProgressTitle">Downloading update…</h3>
+        <p id="updateProgressMessage" class="muted">Preparing download…</p>
+        <div class="update-progress-track" aria-hidden="true">
+          <div id="updateProgressBar" class="update-progress-bar" style="width:0%"></div>
+        </div>
+        <div class="update-progress-meta">
+          <span id="updateProgressPercent">0%</span>
+          <span id="updateProgressPhase">Downloading</span>
+        </div>
       </section>
     </main>
   </section>
@@ -221,7 +232,7 @@
 
           <section class="settings-card">
             <h4>Dashboard</h4>
-            <p>Installed version: <strong id="settingsDashboardVersion">2.1.2</strong></p>
+            <p>Installed version: <strong id="settingsDashboardVersion">2.1.3</strong></p>
             <p class="muted">Smart Home Dashboard running on your Raspberry Pi.</p>
           </section>
 
@@ -258,7 +269,7 @@
             <p class="muted">Check for new dashboard versions and control automatic updates.</p>
           </div>
           <section class="settings-card dashboard-update-panel">
-            <p>Installed version: <strong id="settingsDashboardVersionUpdates">2.1.2</strong></p>
+            <p>Installed version: <strong id="settingsDashboardVersionUpdates">2.1.3</strong></p>
             <p id="githubUpdateStatus" class="muted">Ready to check for updates.</p>
 
             <label class="settings-toggle-row">
@@ -350,6 +361,6 @@
     </form>
   </dialog>
 
-  <script src="/app.js?v=2.1.2" defer></script>
+  <script src="/app.js?v=2.1.3" defer></script>
 </body>
 </html>
