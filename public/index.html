@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0d10">
   <title>Smart Home</title>
-  <link rel="stylesheet" href="/styles.css?v=2.1.1">
+  <link rel="stylesheet" href="/styles.css?v=2.1.2">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to controls</a>
@@ -37,35 +37,61 @@
     </div>
   </header>
 
-  <main id="main">
-    <section aria-labelledby="rooms-heading">
-      <div class="section-heading">
-        <h2 id="rooms-heading">Rooms</h2>
-        <p class="muted room-filter-note">Useful controls only: lights, plugs, speakers, TVs and hubs.</p>
-      </div>
-      <div id="roomGrid" class="grid room-grid" aria-live="polite"></div>
-    </section>
+  <main id="main" class="dashboard-main">
+    <div class="dashboard-shell">
+      <nav class="dashboard-sidebar" aria-label="Dashboard sections">
+        <button class="dashboard-nav-item is-active" data-dashboard-page="home" type="button">
+          <span class="dashboard-nav-icon" aria-hidden="true">⌂</span><span>Home</span>
+        </button>
+        <button class="dashboard-nav-item" data-dashboard-page="rooms" type="button">
+          <span class="dashboard-nav-icon" aria-hidden="true">▦</span><span>Rooms</span>
+        </button>
+        <button class="dashboard-nav-item" data-dashboard-page="heating" type="button">
+          <span class="dashboard-nav-icon" aria-hidden="true">♨</span><span>Heating</span>
+        </button>
+        <button class="dashboard-nav-item" data-dashboard-page="cameras" type="button">
+          <span class="dashboard-nav-icon" aria-hidden="true">◉</span><span>Cameras</span>
+        </button>
+      </nav>
 
-    <section aria-labelledby="heating-heading">
-      <div class="section-heading heating-section-heading">
-        <div>
-          <h2 id="heating-heading">Heating</h2>
-          <p class="muted">Hive thermostat control and protected Boost.</p>
-        </div>
-      </div>
-      <div id="heatingGrid" class="grid heating-grid" aria-live="polite"></div>
-    </section>
+      <div class="dashboard-content">
+        <section class="dashboard-page is-active" data-dashboard-page-panel="home">
+          <div class="dashboard-page-heading"><div><h2>Home</h2><p class="muted">Whole-house overview.</p></div></div>
+          <div class="home-overview-grid">
+            <button class="home-overview-card" data-open-dashboard-page="rooms" type="button">
+              <span class="home-overview-icon" aria-hidden="true">▦</span>
+              <span><strong>Rooms</strong><small id="homeRoomsSummary">Loading room status…</small></span>
+            </button>
+            <button class="home-overview-card" data-open-dashboard-page="heating" type="button">
+              <span class="home-overview-icon" aria-hidden="true">♨</span>
+              <span><strong>Heating</strong><small id="homeHeatingSummary">Loading heating status…</small></span>
+            </button>
+            <button class="home-overview-card" data-open-dashboard-page="cameras" type="button">
+              <span class="home-overview-icon" aria-hidden="true">◉</span>
+              <span><strong>Cameras</strong><small id="homeCamerasSummary">Loading camera status…</small></span>
+            </button>
+          </div>
+        </section>
 
-    <section aria-labelledby="cameras-heading">
-      <div class="section-heading camera-section-heading">
-        <div>
-          <h2 id="cameras-heading">Cameras</h2>
-          <p class="muted">Live cameras and doorbell feeds.</p>
-        </div>
-        <button id="openCamerasButton" class="primary" type="button">Open Cameras</button>
+        <section class="dashboard-page" data-dashboard-page-panel="rooms" hidden aria-labelledby="rooms-heading">
+          <div class="dashboard-page-heading"><div><h2 id="rooms-heading">Rooms</h2><p class="muted room-filter-note">Useful controls only: lights, plugs, speakers, TVs and hubs.</p></div></div>
+          <div id="roomGrid" class="grid room-grid" aria-live="polite"></div>
+        </section>
+
+        <section class="dashboard-page" data-dashboard-page-panel="heating" hidden aria-labelledby="heating-heading">
+          <div class="dashboard-page-heading"><div><h2 id="heating-heading">Heating</h2><p class="muted">Hive thermostat control and protected Boost.</p></div></div>
+          <div id="heatingGrid" class="grid heating-grid" aria-live="polite"></div>
+        </section>
+
+        <section class="dashboard-page" data-dashboard-page-panel="cameras" hidden aria-labelledby="cameras-heading">
+          <div class="dashboard-page-heading dashboard-page-heading-actions">
+            <div><h2 id="cameras-heading">Cameras</h2><p class="muted">Live cameras and doorbell feeds.</p></div>
+            <button id="openCamerasButton" class="primary compact-page-action" type="button">Open Cameras</button>
+          </div>
+          <div id="cameraPreviewGrid" class="grid camera-preview-grid"></div>
+        </section>
       </div>
-      <div id="cameraPreviewGrid" class="grid camera-preview-grid"></div>
-    </section>
+    </div>
   </main>
 
   <section id="roomOverlay" class="full-overlay" hidden aria-labelledby="roomOverlayTitle">
@@ -143,6 +169,7 @@
         </section>
 
         <section class="update-choice-panel">
+          <button id="installedNotesReturnButton" class="secondary update-choice-button" type="button" hidden>Return to Settings</button>
           <button id="updateNowButton" class="primary update-choice-button" type="button">Update Now</button>
           <button id="updateLaterButton" class="secondary update-choice-button" type="button">Update Later</button>
           <button id="scheduleUpdateButton" class="secondary update-choice-button" type="button">Schedule Update</button>
@@ -194,7 +221,7 @@
 
           <section class="settings-card">
             <h4>Dashboard</h4>
-            <p>Installed version: <strong id="settingsDashboardVersion">2.1.1</strong></p>
+            <p>Installed version: <strong id="settingsDashboardVersion">2.1.2</strong></p>
             <p class="muted">Smart Home Dashboard running on your Raspberry Pi.</p>
           </section>
 
@@ -231,7 +258,7 @@
             <p class="muted">Check for new dashboard versions and control automatic updates.</p>
           </div>
           <section class="settings-card dashboard-update-panel">
-            <p>Installed version: <strong id="settingsDashboardVersionUpdates">2.1.1</strong></p>
+            <p>Installed version: <strong id="settingsDashboardVersionUpdates">2.1.2</strong></p>
             <p id="githubUpdateStatus" class="muted">Ready to check for updates.</p>
 
             <label class="settings-toggle-row">
@@ -249,6 +276,7 @@
             </div>
 
             <button id="updateDashboardButton" class="primary full-width-action" type="button">Check for Updates</button>
+            <button id="installedReleaseNotesButton" class="secondary full-width-action" type="button">View Release Notes</button>
           </section>
         </section>
 
@@ -322,6 +350,6 @@
     </form>
   </dialog>
 
-  <script src="/app.js?v=2.1.1" defer></script>
+  <script src="/app.js?v=2.1.2" defer></script>
 </body>
 </html>
