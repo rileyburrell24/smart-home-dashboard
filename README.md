@@ -66,7 +66,7 @@ The Docker socket is mounted so the dashboard can rebuild its own container. Kee
 
 ## Current version
 
-2.0.3
+2.1.0
 
 ## License
 
@@ -85,3 +85,8 @@ Fixed self-update path handling inside Docker. Application files are now written
 ### 2.0.3 update experience
 
 Check for Updates now opens a full-screen status view immediately. Automatic Updates are enabled by default and can use a preferred local install time.
+
+
+### 2.1.0
+
+Redesigned Settings with categories, responsive typography/icons and persistent dashboard themes.
