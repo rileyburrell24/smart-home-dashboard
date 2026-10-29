@@ -1,4 +1,4 @@
-Riley Smart Home Dashboard — Version 2.0.0
+Riley Smart Home Dashboard — Version 2.0.2
 
 Major addition:
 - Real GitHub update checking and installation from rileyburrell24/smart-home-dashboard.
@@ -20,5 +20,6 @@ Verify:
   curl http://127.0.0.1:8088/api/health
 
 Expected:
-  "version":"2.0.0"
+  "version":"2.0.2"
   "homeAssistantConnected":true
+\nUpdater bootstrap fix: application files are updated through /host-dashboard inside Docker.\n
