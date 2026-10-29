@@ -1,0 +1,7 @@
+.env
+data/admin.json
+data/dashboard-config.json
+node_modules/
+npm-debug.log
+.DS_Store
+*.zip
