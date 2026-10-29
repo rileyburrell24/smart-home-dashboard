@@ -753,3 +753,49 @@ dialog::backdrop { background: rgba(0,0,0,.75); }
   .update-choice-panel { grid-template-columns: 1fr; }
   .settings-toggle-row { align-items: flex-start; }
 }
+
+
+/* v2.0.3 update flow */
+.automatic-update-time-row {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 18px;
+}
+
+.automatic-update-time-row input[type="time"] {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid #4a5260;
+  border-radius: 13px;
+  background: #0d1014;
+  color: #fff;
+  padding: 10px 13px;
+  font-size: 18px;
+}
+
+.update-status-panel {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 18px;
+  padding: clamp(20px, 3vw, 34px);
+  text-align: center;
+}
+
+.update-status-panel h3 {
+  font-size: clamp(28px, 4vw, 42px);
+  margin-bottom: 12px;
+}
+
+.update-spinner {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 18px;
+  border: 5px solid #343b45;
+  border-top-color: #f5f7fa;
+  border-radius: 50%;
+  animation: update-spin 0.9s linear infinite;
+}
+
+@keyframes update-spin {
+  to { transform: rotate(360deg); }
+}
