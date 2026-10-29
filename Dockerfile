@@ -2,7 +2,7 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-RUN apk add --no-cache docker-cli docker-cli-compose unzip
+RUN apk add --no-cache docker-cli docker-cli-compose unzip git
 
 COPY package*.json ./
 RUN npm install --omit=dev
