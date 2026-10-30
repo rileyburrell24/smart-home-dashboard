@@ -1,6 +1,7 @@
 services:
   smart-home-dashboard:
     build: .
+    image: smart-home-dashboard:latest
     container_name: smart-home-dashboard
     restart: unless-stopped
     ports:
