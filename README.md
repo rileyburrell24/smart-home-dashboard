@@ -66,7 +66,7 @@ The Docker socket is mounted so the dashboard can rebuild its own container. Kee
 
 ## Current version
 
-2.1.3
+2.2.0
 
 ## License
 
@@ -105,3 +105,8 @@ Adds left-side dashboard navigation, a compact Home overview and installed-versi
 ### 2.1.3
 
 Adds PIN-aware update installation, full-screen download/install/restart progress, and fixes missing install actions.
+
+
+### 2.2.0
+
+Adds named multi-administrator accounts with PIN management, four additional themes, and context-aware release notes from Home and Settings.
