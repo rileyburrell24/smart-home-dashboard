@@ -1,28 +1,10 @@
 {
-  "version": "2.4.1",
+  "version": "2.4.0",
   "parts": [
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part18",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part19",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part20",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part21",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part2",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part3",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part4",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part5",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part6",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part7",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part8",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part9",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part10",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part11",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part12",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part13",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part14",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part15",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part16",
-    "updates/SmartHomeDashboard-2.4.1.zip.b64.part17"
+    "updates/SmartHomeDashboard-2.4.0.zip.b64.part1"
   ],
-  "sha256": "674819bea85a99c9706611dd7f4a40723b15450e83a863e362af47293832909b",
-  "releaseNotesPath": "releases/2.4.1.md",
-  "publishedAt": "2026-10-30T02:04:27Z"
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "releaseNotesPath": "releases/2.4.0.md",
+  "publishedAt": "2026-10-30T01:39:58Z",
+  "channelStatus": "2.4.1 temporarily withdrawn after failed OTA test"
 }
