@@ -1,0 +1,15 @@
+{
+  "version": "2.4.0",
+  "parts": [
+    "updates/SmartHomeDashboard-2.4.0.zip.b64.part1",
+    "updates/SmartHomeDashboard-2.4.0.zip.b64.part2",
+    "updates/SmartHomeDashboard-2.4.0.zip.b64.part3",
+    "updates/SmartHomeDashboard-2.4.0.zip.b64.part4",
+    "updates/SmartHomeDashboard-2.4.0.zip.b64.part5",
+    "updates/SmartHomeDashboard-2.4.0.zip.b64.part6",
+    "updates/SmartHomeDashboard-2.4.0.zip.b64.part7"
+  ],
+  "sha256": "f2320134a25314417f5fd4f4e0a0ef481873aed49e10b0b99d83df123fa833a2",
+  "releaseNotesPath": "releases/2.4.0.md",
+  "publishedAt": "2026-10-30T01:39:58Z"
+}
