@@ -1,6 +1,6 @@
 {
   "name": "riley-smart-home-dashboard",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "private": false,
   "description": "Accessible Raspberry Pi wall-panel smart home dashboard powered by Home Assistant",
   "main": "server.js",
@@ -11,5 +11,6 @@
     "express": "^5.1.0",
     "dotenv": "^16.4.5",
     "ws": "^8.18.0"
-  }
+  },
+  "updateChannel": "stable"
 }
